@@ -42,11 +42,7 @@ module.exports = function exports (grunt, _spawn) {
       // start a process
       var child = spawn(mocha_path
         , _op
-        , {env: _env});
-
-      // pipe the output (in paralell this is going to be noisey)
-      child.stdout.pipe(process.stdout);
-      child.stderr.pipe(process.stderr);
+        , {env: _env, stdio: "inherit"});
 
       // report back the outcome
       child.on('close', function (code) {
